@@ -3,8 +3,7 @@ class Config:
 
     # don't reveal to others
     _BOT_TOKEN = 'BOT_TOKEN_HERE'
-    _BOT_KEY = "BOT_KEY_HERE"
-    # BOT_KEY = os.environ.get('DISCORD_BOT_SECRET')
+    _BOT_KEY = os.environ.get('DISCORD_BOT_SECRET')
 
     # the absolute max is 21 due to embedded message limits, 15 is less arbitrary
     ROLL_CAP = 15
