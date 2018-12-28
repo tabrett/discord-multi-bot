@@ -1,0 +1,1 @@
+taskkill /f /FI "WINDOWTITLE eq Discord MultiBot"

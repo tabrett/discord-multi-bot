@@ -1,0 +1,1 @@
+worker: python discord-dice-roll.py
