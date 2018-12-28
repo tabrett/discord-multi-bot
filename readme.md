@@ -1,5 +1,6 @@
 # MultiBot
 Multi-use bot for Discord.
+(This was an expansion on the original Dice Roll bot.)
 
 This currently requires Python 3.6.x.  
 
@@ -21,5 +22,5 @@ Usage:
   - Unzip the file.
   - Run Setup_Multibot_Windows.bat. (This installs the required Python packages.)
   - Do some other stuff (that I'll update later).
-  - Start the bot run the Start_Multibot_Windows.bat file.
-  - To stop the bot, run the Stop_Multibot_Windows.bat file __OR__ close any Python command windows.
+  - Start the bot using the Start_Multibot_Windows.bat file.
+  - To stop the bot, run the Stop_Multibot_Windows.bat file __OR__ close any Python command windows/processes.
