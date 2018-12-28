@@ -1,6 +1,10 @@
-import asyncio
-import aiohttp
+# import asyncio
+# import aiohttp
 
-from discord import ( Embed )
+# import discord
+# # from discord import ( Embed )
 
-from settings import config
+# from settings import config
+
+
+# def get_current_users():
