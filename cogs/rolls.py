@@ -3,7 +3,7 @@ import aiohttp
 import random
 import re
 
-from discord import ( Embed, Client )
+from discord import ( Embed )
 from random import ( randint, seed )
 
 from settings import config

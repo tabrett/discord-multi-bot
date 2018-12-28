@@ -71,7 +71,7 @@ def build_HelpMessage():
 
 
 def get_HelpImbed(message):
-    embed_title = 'Below are some useful commands for Dice Roll Bot:'
+    embed_title = 'Below are some useful commands for MultiBot:'
     embed=Embed(title=embed_title)
     embed.add_field(name=u"\u200b", value='test output', inline=False)
     return embed

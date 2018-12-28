@@ -13,10 +13,10 @@ def time_delta(dt):
 
 
 def build_InfoMessage():
-    embed_title = 'Info for Dice Roll Bot'
+    embed_title = 'Info for MultiBot'
     embed=Embed(title=embed_title)
     embed.add_field(name='Developed By', value='Taylor B.\t(taytay#6307)', inline=False)
-    embed.add_field(name='Source Code', value='[GitHub](https://github.com/tabrett/discord-dice-roll)')
-    embed.add_field(name='Hosted By', value='[Heroku](https://www.heroku.com/home)', inline=False)
+    embed.add_field(name='Source Code', value='[GitHub](https://github.com/tabrett/discord-multi-bot)')
+   #  embed.add_field(name='Hosted By', value='[Heroku](https://www.heroku.com/home)', inline=False)
 
     return embed
