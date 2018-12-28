@@ -1,22 +1,38 @@
-# don't reveal to others
-bot_token = 'BOT_TOKEN_HERE'
-bot_key = "BOT_KEY_HERE"
+import os
+class Config:
 
-# the absolute max is 21 due to embedded message limits
-roll_cap = 15
+    # don't reveal to others
+    _BOT_TOKEN = 'BOT_TOKEN_HERE'
+    _BOT_KEY = "NDY1Mjk5MTg4MTk2ODM1MzM5.DwcVpg.J5g_T9RcDG_6eCgFeuP3LQKjSAA"
+    # BOT_KEY = os.environ.get('DISCORD_BOT_SECRET')
 
-# add or remove to include N-sided die to !roll command
-valid_dice = [4, 6, 8, 10, 12, 16, 20, 100]
+    # the absolute max is 21 due to embedded message limits, 15 is less arbitrary
+    ROLL_CAP = 15
 
-bot_commands = ['help','commands','info']
+    # what each command begins with
+    # other possibilities (not limited to these): ?, //, ~, >, >>, $
+    COMMAND_PREFIX = '!'
+    
+    # add or remove to include N-sided die to !roll command
+    VALID_DICE = [3, 4, 6, 8, 10, 12, 16, 20, 100]
 
-# responses are randomly chosen.  <@%s> replaced by user that uses @everyone
-at_everyone_responses = [ 
-                '<@%s> Wow, guy.',
-                '<@%s> Don\'t @ me, please.',
-                '<@%s> Wow wtf',
-                '<@%s> No u',
-                '<@%s> Don\'t fucking @ me, nerd.',
-                'Hey @everyone, <@%s> is a jerk.',
-                'Wow, <@%s>.  I can\'t believe you just used @everyone.',
-                '<@%s> No.' ]
+    BOT_COMMANDS = ['help','commands','info']
+
+    # responses are randomly chosen.  <@%s> replaced by user that uses @everyone
+    AT_EVERYONE_RESPONSES = [ 
+                    '<@%s> Wow, guy.',
+                    '<@%s> Don\'t @ me, please.',
+                    '<@%s> Wow wtf',
+                    '<@%s> No u',
+                    '<@%s> Don\'t fucking @ me, nerd.',
+                    'Hey @everyone, <@%s> is a jerk.',
+                    'Wow, <@%s>.  I can\'t believe you just used @everyone.',
+                    '<@%s> No.',
+                    ('<@%s> '
+                     u'\U0001F621') ]
+
+    # seconds of delay for some bot responses
+    BOT_RESPONSE_DELAY = .3
+
+    LANDING_CHANNEL_NAME = "General"
+    TARGET_CHANNEL_NAME = "MoveHere"
