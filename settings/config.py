@@ -2,8 +2,12 @@ import os
 class Config:
 
     # don't reveal to others
-    _BOT_TOKEN = 'BOT_TOKEN_HERE'
-    _BOT_KEY = os.environ.get('DISCORD_BOT_SECRET')
+    
+    if os.environ.get('DISCORD_BOT_TOKEN') is not None:
+        _BOT_TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
+    else: 
+        # CHANGE THE VALUE BETWEEN QUOTES IF BOT WAS DOWNLOADED
+        _BOT_TOKEN = 'BOT_TOKEN_HERE'
 
     # the absolute max is 21 due to embedded message limits, 15 is less arbitrary
     ROLL_CAP = 15

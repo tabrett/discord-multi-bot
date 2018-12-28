@@ -155,18 +155,15 @@ async def raid(ctx):
     await bot.say('Users moved.')
 
 
-@bot.command(pass_context=True, aliases=['config', 'botconfig'])
-async def bot_config(ctx, *args):
-    await bot.say(args)
+# @bot.command(pass_context=True, aliases=['config', 'botconfig'])
+# async def bot_config(ctx, *args):
+#     await bot.say(args)
 
-    config_list = [ (k, config.__dict__[k]) for k in config.__dict__
-                            if not k.startswith('_')]
+#     config_list = [ (k, config.__dict__[k]) for k in config.__dict__
+#                             if not k.startswith('_')]
     
-    for item in config_list:
-        await bot.say(item)
-
-    # msg = '\n'.join(config_list)
-    # await bot.say(msg)
+#     for item in config_list:
+#         await bot.say(item)
 
     # for k in config.__dict__:
     #     if not k.startswith('_'):
@@ -179,11 +176,6 @@ async def bot_config(ctx, *args):
     #             # await bot.say('%s : %s\n' % (k, config.__dict__[k].encode("utf-8")))
     #         except:
     #             pass
-
-# async def config(ctx, *args):
-    # if args is None:
-    #     pass
-    # return
 
 #=========================
 # non-command listeners
@@ -210,4 +202,4 @@ async def on_ready():
 #=========================
 # run bot
 #=========================
-bot.run(config._BOT_KEY)
+bot.run(config._BOT_TOKEN)
