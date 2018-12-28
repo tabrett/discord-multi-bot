@@ -4,7 +4,7 @@ import aiohttp
 
 from settings import config
 
-def build_HelpMessage():
+def build_help_message():
     # this was a questionable decision at best
     help_dict = { '1': ('!roll 20', 'Rolls 1 d20'),
                   '2': ('!roll 2 20', 'Rolls 2 d20'),
@@ -70,7 +70,7 @@ def build_HelpMessage():
 
 
 
-def get_HelpImbed(message):
+def get_help_imbed(message):
     embed_title = 'Below are some useful commands for MultiBot:'
     embed=Embed(title=embed_title)
     embed.add_field(name=u"\u200b", value='test output', inline=False)
