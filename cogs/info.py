@@ -12,7 +12,7 @@ def time_delta(dt):
 
 
 
-def build_InfoMessage():
+def build_info_message():
     embed_title = 'Info for MultiBot'
     embed=Embed(title=embed_title)
     embed.add_field(name='Developed By', value='Taylor B.\t(taytay#6307)', inline=False)
