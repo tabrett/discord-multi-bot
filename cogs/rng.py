@@ -65,3 +65,9 @@ def build_RollResult(author, diceVal, diceCount, hitCap=False):
                             % config.roll_cap)
 
     return embed
+
+
+def coin_flip():
+    
+    coin_faces = ['Heads','Tails']
+    return random.choice(coin_faces)
