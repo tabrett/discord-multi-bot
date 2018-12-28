@@ -1,1 +1,1 @@
-worker: python discord-dice-roll.py
+worker: python multibot.py
