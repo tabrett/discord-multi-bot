@@ -39,3 +39,5 @@ class Config:
 
     LANDING_CHANNEL_NAME = "General"
     TARGET_CHANNEL_NAME = "MoveHere"
+
+    SILENT_MODE = False
