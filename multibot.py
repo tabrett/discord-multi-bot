@@ -148,11 +148,13 @@ async def raid(ctx):
                                        name=config.TARGET_CHANNEL_NAME,
                                        type=discord.ChannelType.voice)
     
+    i = 0
     for member in landing_channel.voice_members:
-        await bot.say(member)
+        # await bot.say(member)
         await bot.move_member(member, target_channel)
+        i+=1
     
-    await bot.say('Users moved.')
+    await bot.say('%s users moved.' % i)
 
 
 # @bot.command(pass_context=True, aliases=['config', 'botconfig'])
@@ -182,7 +184,12 @@ async def raid(ctx):
 #=========================
 @bot.event
 async def on_message(message):
-    await bot.process_commands(message)                                         # allow commands to be processed first
+    if config.SILENT_MODE:
+        if message.startswith('!silent'):
+            await bot.process_commands(message)
+        return
+
+    await bot.process_commands(message)                                     # allow commands to be processed first
 
     if message.author == bot.user:
         return 
@@ -193,6 +200,10 @@ async def on_message(message):
         await bot.send_message(message.channel, 
                               (random.choice(config.AT_EVERYONE_RESPONSES) 
                                           % (message.author.id)))
+
+    if bot.user in message.mentions:
+        await bot.send_message(message.channel, "Hi.")
+    # print(message)
 
 @bot.event
 async def on_ready():
