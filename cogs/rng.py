@@ -6,8 +6,7 @@ import re
 from discord import ( Embed )
 from random import ( randint, seed )
 
-from settings import config
-
+from settings.config import Config as config
 
 def roll_parse(inputStr):
     # splits entry from !roll
@@ -16,7 +15,7 @@ def roll_parse(inputStr):
     except ValueError:
         return 'help', 0
 
-    if rhs in config.bot_commands:
+    if rhs in config.BOT_COMMANDS:
         # checks for alternate subcommand first
         return rhs, 0
     else:
@@ -24,7 +23,7 @@ def roll_parse(inputStr):
         try: 
             sub_lhs, sub_rhs = rhs.split(' ', 1)
             if sub_lhs.lower() == 'max':
-                return sub_rhs, config.roll_cap
+                return sub_rhs, config.ROLL_CAP
             else:
                 return sub_rhs, sub_lhs
         except ValueError:
@@ -62,7 +61,7 @@ def build_RollResult(author, diceVal, diceCount, hitCap=False):
 
     if hitCap:
         embed.set_footer(text='**You rolled too many dice.  This request has been capped at %s rolls.' 
-                            % config.roll_cap)
+                            % config.ROLL_CAP)
 
     return embed
 

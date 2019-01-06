@@ -2,7 +2,7 @@ from discord import ( Embed )
 import asyncio
 import aiohttp
 
-from settings import config
+from settings.config import Config as config
 
 def build_help_message():
     # this was a questionable decision at best
@@ -59,7 +59,7 @@ def build_help_message():
     table_out += bot_row_border
     table_out += '\n'
     table_out += ( u'\u2551' + '    ' 
-                    + str('* Current maximum rolls: %s' % config.roll_cap).ljust((rhs_max + lhs_max + 1), ' ')
+                    + str('* Current maximum rolls: %s' % config.ROLL_CAP).ljust((rhs_max + lhs_max + 1), ' ')
                     + u'\u2551' + '\n' )
                     
     table_out += alt_bot_row
