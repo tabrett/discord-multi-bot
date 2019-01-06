@@ -2,6 +2,10 @@
 Multi-use bot for Discord.
 (This was an expansion on the original Dice Roll bot.)
 
+Utilizes the Python Discord package [https://github.com/Rapptz/discord.py](https://github.com/Rapptz/discord.py)
+
+Documentation can be found [here](https://discordpy.readthedocs.io/en/latest/)
+
 Current features:
   - D&D/RPG Dice Rolls
   - Channel Management, including:
