@@ -15,9 +15,12 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 
+from cogs.rng.dice_roll import *
+from cogs.rng.coinflip import *
+
 from cogs import help as help_cog
 from cogs import info as info_cog
-from cogs import rng as rng_cog
+# from cogs import rng as rng_cog
 from cogs import channel_move as cmove_cog
 
 from settings.config import Config as config
@@ -37,15 +40,23 @@ start_time = datetime.datetime.now()
 #=========================
 # command listeners
 #=========================
-@bot.command()
-async def prefix():
-    bot.say()
+@bot.command(pass_context=True)
+async def prefix(ctx):
+    if 'set' in ctx.message.content:
+        # print(ctx.message.content)
+        msg_content = ctx.message.content.split(" ")
+        # print(msg_content)
+        bot.command_prefix = msg_content[2]
+        config.COMMAND_PREFIX = msg_content[2]
+        await bot.say("Bot command prefix set to: '%s'" % config.COMMAND_PREFIX)
+    else:
+        await bot.say("Current bot command prefix: '%s'" % config.COMMAND_PREFIX)
 
 
 @bot.command(aliases=['flip'])
 async def coinflip():
     """Returns result of a heads/tails coin flip"""
-    await bot.say(rng_cog.coin_flip())
+    await bot.say(coin_flip())
 
 
 @bot.command(pass_context=True, aliases=['channels'])
@@ -72,9 +83,9 @@ async def ping(ctx):
 
 
 @bot.command(pass_context=True)
-async def roll(ctx):
+async def roll(ctx, *args):
 
-    dice_val, dice_count = rng_cog.roll_parse(ctx.message.content)
+    dice_val, dice_count = roll_parse(ctx.message.content)
     hit_cap = False
     
     # hard cap rolls at rollCap value
@@ -96,10 +107,10 @@ async def roll(ctx):
             await bot.say(embed=info_cog.build_info_message())
 
     elif int(dice_val) in config.VALID_DICE:
-        await bot.say(embed=rng_cog.build_RollResult(ctx.message.author.name, 
-                                                     int(dice_val), 
-                                                     int(dice_count), 
-                                                     hit_cap))
+        await bot.say(embed=build_RollResult( ctx.message.author.name, 
+                                                int(dice_val), 
+                                                int(dice_count), 
+                                                hit_cap ) )
     else:
         msg = 'You fucked up. Pick a valid die or command.'
         await bot.say(msg)
@@ -150,9 +161,11 @@ async def raid(ctx):
     
     i = 0
     for member in landing_channel.voice_members:
-        # await bot.say(member)
-        await bot.move_member(member, target_channel)
-        i+=1
+        try:
+            await bot.move_member(member, target_channel)
+            i+=1
+        except:
+            await bot.say('%s was not moved.' % member.name)
     
     await bot.say('%s users moved.' % i)
 
@@ -184,12 +197,14 @@ async def raid(ctx):
 #=========================
 @bot.event
 async def on_message(message):
+
+    # if bot in silent mode, only accept '!silent' command
     if config.SILENT_MODE:
         if message.startswith('!silent'):
             await bot.process_commands(message)
         return
 
-    await bot.process_commands(message)                                     # allow commands to be processed first
+    await bot.process_commands(message)                                         # allow commands to be processed first
 
     if message.author == bot.user:
         return 
