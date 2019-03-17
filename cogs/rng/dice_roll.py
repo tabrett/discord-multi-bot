@@ -1,12 +1,4 @@
-import asyncio
-import aiohttp
-import random
-import re
-
-from discord import ( Embed )
-from random import ( randint, seed )
-
-from settings.config import Config as config
+from . import *
 
 def roll_parse(inputStr):
     # splits entry from !roll
@@ -64,9 +56,3 @@ def build_RollResult(author, diceVal, diceCount, hitCap=False):
                             % config.ROLL_CAP)
 
     return embed
-
-
-def coin_flip():
-    
-    coin_faces = ['Heads','Tails']
-    return random.choice(coin_faces)
