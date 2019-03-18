@@ -2,7 +2,7 @@ from discord import ( Embed )
 import asyncio
 import aiohttp
 
-from settings.config import Config as config
+from .config import Config as config
 
 def build_help_message():
     # this was a questionable decision at best
@@ -16,7 +16,7 @@ def build_help_message():
                   '8': ('!grantbot', 'Responds just like Grant.'),
                   '9': ('!roll info', 'Provides more info about the bot.') }
 
-    for k, v in help_dict.items():
+    for _, v in help_dict.items():
         lhs_max, rhs_max = 0, 0
         if len(v[0]) > lhs_max:
             lhs_max = len(v[0])
@@ -49,7 +49,7 @@ def build_help_message():
                     + u'\u2551' + str(' Description').ljust((rhs_max + 2), ' ')
                     + u'\u2551' + '\n' )
 
-    for k, v in help_dict.items():
+    for _, v in help_dict.items():
         table_out += mid_row_border
         table_out +=  '\n'
         table_out += ( u'\u2551' + ' ' + v[0].ljust((lhs_max + 1), ' ')

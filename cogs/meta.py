@@ -1,6 +1,6 @@
 from discord import ( Embed )
 
-from settings import config
+# from .config import Config
 
 def time_delta(dt):
     days = dt.days
