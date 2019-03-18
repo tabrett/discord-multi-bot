@@ -22,9 +22,10 @@ from cogs import channel_move as cmove_cog
 
 from cogs.config import Config as config
 
-from cogs.wiki import get_wiki_page, build_wiki_embed
 from cogs.meta import time_delta, build_info_message
 from cogs.help import build_help_message, get_help_imbed
+from cogs.wiki import ( get_wiki_page, build_wiki_embed, 
+                         get_raw_page, build_from_raw )
 
 from cogs.coinflip import coin_flip
 from cogs.dice_roll import build_roll_result
@@ -184,16 +185,22 @@ async def wiki(ctx, *, arg):
     """Queries the Wikipedia API and returns a summary of the page passed as
     an argument.
 
-
     Returns similar pages if none found."""
     
-    # In order to search for a multi-word entry, wrap the entry in quotes.
-        # e.g. !wiki "Free and open-source software"
+    try:
+        wiki_embed = build_wiki_embed(get_wiki_page(arg))
+        await bot.say(embed=wiki_embed)
+    except:
+        raw_page = get_raw_page(arg).json()
 
-    # page_title = ctx.message.content.split(" ")[1]
-    # page
-    wiki_embed = build_wiki_embed(get_wiki_page(arg))
-    await bot.say(embed=wiki_embed)
+        if raw_page['type'] != "disambiguation":
+            wiki_embed = build_from_raw(raw_page)
+            await bot.say(embed=wiki_embed)
+        else: 
+            await bot.say(embed=Embed(name="Error",
+                                        value="Wiki result could not be found.",
+                                        inline=True))
+    
 
 
 @bot.command(pass_context=True, aliases=['config', 'botconfig'])
