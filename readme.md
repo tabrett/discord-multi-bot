@@ -20,7 +20,7 @@ Current features:
 
   [Download Python 3.6.7](https://www.python.org/downloads/release/python-367/)
 
-  __*IMPORTANT*__: Python 3.7+ introduces a new keyword (__*async*__) that causes an error to be thrown.
+  __*IMPORTANT*__: Python 3.7+ introduces a new keyword (__*async*__) that conflicts with another keyword.
 
 ## II. Download Multibot
   Clone this repo OR [Download the ZIP file](https://github.com/tabrett/discord-multi-bot/archive/master.zip).
