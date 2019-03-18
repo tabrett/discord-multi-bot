@@ -20,17 +20,18 @@ from discord.ext.commands import Bot
 
 from cogs import channel_move as cmove_cog
 
-from cogs.wiki import get_wiki_page
+from cogs.config import Config as config
+
+from cogs.wiki import get_wiki_page, build_wiki_embed
 from cogs.meta import time_delta, build_info_message
 from cogs.help import build_help_message, get_help_imbed
 
 from cogs.coinflip import coin_flip
 from cogs.dice_roll import build_roll_result
 
-from cogs.config import Config as config
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 # handler.setFormatter(logging.Formatter('%(asctime)s:%s(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
@@ -179,13 +180,20 @@ async def raid(ctx):
 
 
 @bot.command(pass_context=True, aliases=['wikibot'])
-async def wiki(ctx, *args):
+async def wiki(ctx, *, arg):
     """Queries the Wikipedia API and returns a summary of the page passed as
-    an argument.  
+    an argument.
+
 
     Returns similar pages if none found."""
-    page_title = ctx.message.content.split(" ")[1]
-    get_wiki_page(page_title).json()
+    
+    # In order to search for a multi-word entry, wrap the entry in quotes.
+        # e.g. !wiki "Free and open-source software"
+
+    # page_title = ctx.message.content.split(" ")[1]
+    # page
+    wiki_embed = build_wiki_embed(get_wiki_page(arg))
+    await bot.say(embed=wiki_embed)
 
 
 @bot.command(pass_context=True, aliases=['config', 'botconfig'])
