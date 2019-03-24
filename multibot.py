@@ -251,6 +251,24 @@ async def prefix(ctx):
 # TODO: Code to modify BOT_RESPONSE_DELAY
 
 
+@bot.command(pass_context=True, aliases=['silent','quiet'])
+async def silent_toggle(ctx):
+    """Command to turn silent mode on and off."""
+
+    if ctx.message.content.split(" ")[1] == "on":
+        if config.SILENT_MODE:
+            await bot.say("Silent mode is already enabled.")
+        else:
+            config.SILENT_MODE = True
+            await bot.say("Silent mode has been enabled.")
+    elif ctx.message.content.split(" ")[1] == "off":
+        if not config.SILENT_MODE:
+            await bot.say("Silent mode is already disabled.")
+        else:
+            config.SILENT_MODE = False
+            await bot.say("Silent mode has been disabled.")
+
+
 @bot.command(pass_context=True, aliases=['code', 'source', 'git', 'github', 'scm'])
 async def bot_code(ctx):
     """Link to source code GitHub repo."""
@@ -270,7 +288,7 @@ async def on_message(message):
 
     # if bot in silent mode, only accept '!silent' command
     if config.SILENT_MODE:
-        if message.startswith('!silent'):
+        if message.content.startswith('!silent'):
             await bot.process_commands(message)
         return
 
